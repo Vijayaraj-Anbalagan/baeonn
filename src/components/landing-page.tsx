@@ -483,14 +483,14 @@ function App() {
             transition={{ duration: 0.2 }}
           >
             <span className="text-gray-600">{item.label}</span>
-            <span className={`font-semibold ${item.highlight ? 'text-green-500' : ''}`}>{item.value}</span>
+            <span className={`font-semibold blur-sm ${item.highlight ? 'text-green-500' : ''}`}>{item.value}</span>
           </motion.div>
             ))}
           </div>
         </div>
         <div className="p-8 bg-gray-50">
           <a 
-            href="#campaign" 
+            href="https://dashboard.baeonn.com" 
             className="block w-full bg-blue-500 text-white text-center px-8 py-3 rounded-full hover:bg-blue-600 transition-colors"
           >
             Initiate a Targeted Campaign
