@@ -9,12 +9,10 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 gsap.registerPlugin(ScrollToPlugin);
 
-const sectionId = '#about'; // Define sectionId
 
 if (typeof window !== 'undefined') {
   gsap.to(window, {
     duration: 1.5, // Increase to 1.5 or 2 for smoother scrolling
-    scrollTo: { y: sectionId, offsetY: 70 },
     ease: 'power1.inOut', // Use a smoother easing function
   });
 }
