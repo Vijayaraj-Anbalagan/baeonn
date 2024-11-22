@@ -483,7 +483,7 @@ function App() {
             transition={{ duration: 0.2 }}
           >
             <span className="text-gray-600">{item.label}</span>
-            <span className={`font-semibold blur-sm ${item.highlight ? 'text-green-500' : ''}`}>{item.value}</span>
+            <span className={`font-semibold blur-sm ${item.highlight ? 'text-green-500 hover:blur-none transition-all' : ''}`}>{item.value}</span>
           </motion.div>
             ))}
           </div>
