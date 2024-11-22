@@ -194,7 +194,7 @@ function App() {
 
       {/* Mobile Menu Drawer */}
       {isMenuOpen && (
-        <div className="absolute top-16 right-4 w-64 bg-white shadow-lg z-40 rounded-lg">
+        <div className="absolute top-16 right-5 w-64 bg-white shadow-lg z-40 rounded-lg">
           <div className="flex flex-col items-center py-4 space-y-4">
             <button
               onClick={() => handleScrollToSection("#about")}
@@ -217,76 +217,77 @@ function App() {
           </div>
         </div>
       )}
+
     </header>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto flex flex-col md:flex-row items-center">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
         {/* Text Section */}
-        <div className="w-full md:w-1/2 md:pr-10 mr-10 text-center md:text-left">
+        <div className="w-full md:w-1/2 md:pr-10 text-center md:text-left">
           <motion.h1
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-5"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+        className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-5"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
           >
-            Unlock Hyperlocal Customer Acquisition
+        Unlock Hyperlocal Customer Acquisition
           </motion.h1>
           <motion.div
-            className="h-24 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+        className="h-24 mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
           >
-            <motion.div
-              key={currentBusinessType}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="text-xl text-gray-600"
-            >
-              <h2 className="text-2xl font-semibold text-blue-500 mb-2">
-          {businessTypes[currentBusinessType].title}
-              </h2>
-              <p>{businessTypes[currentBusinessType].desc}</p>
-            </motion.div>
+        <motion.div
+          key={currentBusinessType}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="text-xl text-gray-600"
+        >
+          <h2 className="text-2xl font-semibold text-blue-500 mb-2">
+            {businessTypes[currentBusinessType].title}
+          </h2>
+          <p>{businessTypes[currentBusinessType].desc}</p>
+        </motion.div>
           </motion.div>
           <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-            <a
-              href="https://dashboard.baeonn.com"
-              className="group w-full sm:w-auto bg-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
-            >
-              Get Started <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
-            </a>
-            <a
-              href="#demo"
-              className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
-            >
-              Book a Demo
-            </a>
+        <a
+          href="https://dashboard.baeonn.com"
+          className="group w-full sm:w-auto bg-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+        >
+          Get Started <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
+        </a>
+        <a
+          href="#demo"
+          className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
+        >
+          Book a Demo
+        </a>
           </div>
         </div>
 
         {/* Carousel Section */}
         <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
           <motion.div
-            key={currentBusinessType}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.5 }}
-            className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden shadow-lg border-2 border-gray-100"
+        key={currentBusinessType}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 20 }}
+        transition={{ duration: 0.5 }}
+        className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden shadow-lg border-2 border-gray-100"
           >
-            <img
-              src={businessTypes[currentBusinessType].img}
-              alt={businessTypes[currentBusinessType].title}
-              className="w-full h-full object-cover"
-            />
+        <img
+          src={businessTypes[currentBusinessType].img}
+          alt={businessTypes[currentBusinessType].title}
+          className="w-full h-full object-cover"
+        />
           </motion.div>
         </div>
       </div>
-    </section>
+        </section>
 
      {/* Stats Section */}
      <section className="py-20 bg-gray-50">
