@@ -11,11 +11,13 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const sectionId = '#about'; // Define sectionId
 
-gsap.to(window, {
-  duration: 1.5, // Increase to 1.5 or 2 for smoother scrolling
-  scrollTo: { y: sectionId, offsetY: 70 },
-  ease: 'power1.inOut', // Use a smoother easing function
-});
+if (typeof window !== 'undefined') {
+  gsap.to(window, {
+    duration: 1.5, // Increase to 1.5 or 2 for smoother scrolling
+    scrollTo: { y: sectionId, offsetY: 70 },
+    ease: 'power1.inOut', // Use a smoother easing function
+  });
+}
 
 const businessTypes = [
   { title: 'Retail', desc: 'Supermarket, Hypermarket, local shops and boutiques' },
@@ -156,9 +158,9 @@ function App() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a 
                 href="https://dashboard.baeonn.com" 
-                className="w-full sm:w-auto bg-orange-500 text-white px-8 py-3 rounded-full hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto bg-orange-500 text-white px-8 py-3 rounded-full hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
               >
-                Get Started <ArrowRight size={20} />
+                Get Started <ArrowRight size={20} className=' group-hover:motion-preset-slide-right '/>
               </a>
               <a 
                 href="#demo" 
@@ -199,7 +201,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        <Building2 className="w-10 h-10 text-orange-500 mb-4" />
+        <Building2 className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">For Businesses</h3>
         <p className="text-gray-600">
           List your campaigns, reach new customers, and grow your local presence effectively through our intuitive platform.
@@ -214,7 +216,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <Store className="w-10 h-10 text-orange-500 mb-4" />
+        <Store className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Hyperlocal Solutions</h3>
         <p className="text-gray-600">
           Use hyperlocal targeting to reach customers in specific areas, ensuring your promotions are relevant and impactful.
@@ -229,7 +231,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.3 }}
         viewport={{ once: true }}
       >
-        <Tag className="w-10 h-10 text-orange-500 mb-4" />
+        <Tag className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Customer Engagement</h3>
         <p className="text-gray-600">
           Keep your customers engaged with personalized offers, loyalty programs, and timely reminders.
@@ -244,7 +246,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.4 }}
         viewport={{ once: true }}
       >
-        <Users className="w-10 h-10 text-orange-500 mb-4" />
+        <Users className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Affordable Pricing</h3>
         <p className="text-gray-600">
           Transparent pricing with zero hidden costs. Pay only for successful customer interactions.
@@ -259,7 +261,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <ChevronDown className="w-10 h-10 text-orange-500 mb-4" />
+        <ChevronDown className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Ease of Use</h3>
         <p className="text-gray-600">
           With a user-friendly dashboard, easily track campaign performance, customer data, and ROI in real-time.
@@ -274,7 +276,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.6 }}
         viewport={{ once: true }}
       >
-        <ArrowRight className="w-10 h-10 text-orange-500 mb-4" />
+        <ArrowRight className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Scalable Platform</h3>
         <p className="text-gray-600">
           Suitable for businesses of all sizes, from local shops to national brands, with scalable solutions.
@@ -403,29 +405,40 @@ function App() {
       <section id="faq" className="py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            Frequently Asked Questions
+        Frequently Asked Questions
           </h2>
           <div className="max-w-2xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm">
-                <button
-                  className="w-full px-6 py-4 text-left flex items-center justify-between"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? -1 : index)}
-                >
-                  <span className="font-semibold text-gray-900">{faq.question}</span>
-                  {openFaqIndex === index ? (
-                    <ChevronUp className="w-5 h-5 text-gray-500" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
-                  )}
-                </button>
-                {openFaqIndex === index && (
-                  <div className="px-6 pb-4 text-gray-600">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+        {faqs.map((faq, index) => (
+          <motion.div 
+            key={index} 
+            className="bg-white rounded-lg shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+          >
+            <button
+          className="w-full px-6 py-4 text-left flex items-center justify-between"
+          onClick={() => setOpenFaqIndex(openFaqIndex === index ? -1 : index)}
+            >
+          <span className="font-semibold text-gray-900">{faq.question}</span>
+          {openFaqIndex === index ? (
+            <ChevronUp className="w-5 h-5 text-gray-500" />
+          ) : (
+            <ChevronDown className="w-5 h-5 text-gray-500" />
+          )}
+            </button>
+            {openFaqIndex === index && (
+          <motion.div 
+            className="px-6 pb-4 text-gray-600"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.4 }}
+          >
+            {faq.answer}
+          </motion.div>
+            )}
+          </motion.div>
+        ))}
           </div>
         </div>
       </section>
@@ -443,11 +456,11 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
               <div className="space-y-2">
-                <a href="tel:+917695841500" className="flex items-center text-gray-400 hover:text-white">
+                <a href="tel:+917695841500" className="flex items-center text-gray-400 hover:text-orange-500">
                   <Phone className="w-5 h-5 mr-2" />
                   +91 7695841500
                 </a>
-                <a href="mailto:contact@baeonn.com" className="flex items-center text-gray-400 hover:text-white">
+                <a href="mailto:contact@baeonn.com" className="flex items-center text-gray-400 hover:text-orange-500">
                   <Mail className="w-5 h-5 mr-2" />
                   contact@baeonn.com
                 </a>
@@ -456,16 +469,16 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="#" className="text-gray-400 hover:text-orange-500">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="#" className="text-gray-400 hover:text-orange-500">
                   <Twitter className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="#" className="text-gray-400 hover:text-orange-500">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="#" className="text-gray-400 hover:text-orange-500">
                   <Linkedin className="w-6 h-6" />
                 </a>
               </div>
