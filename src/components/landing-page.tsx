@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Store, Tag, Users, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, ChevronRight } from 'lucide-react';
+import { Building2, Store, Tag, Users, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import NumberTicker from './ui/number-ticker';
-import AnimatedGradientText from './ui/animated-gradient-text';
-import { cn } from '@/lib/utils';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
@@ -18,13 +16,38 @@ if (typeof window !== 'undefined') {
 }
 
 const businessTypes = [
-  { title: 'Retail', desc: 'Supermarket, Hypermarket, local shops and boutiques' },
-  { title: 'Restaurants', desc: 'Restaurants, cafes, and bars' },
-  { title: 'Health and Wellness', desc: 'Gyms, fitness studios, and wellness centres' },
-  { title: 'Beauty and Personal Care', desc: 'Salons, barbershops, and skincare clinics' },
-  { title: 'Hoteliers', desc: 'Hotels, resorts, and travel-related businesses' },
-  { title: 'Entertainment', desc: 'Theaters, cinemas, and recreational facilities' }
+  { 
+    title: "Retail", 
+    desc: "Supermarket, Hypermarket, local shops and boutiques", 
+    img: "/images/retail.jpg" 
+  },
+  { 
+    title: "Restaurants", 
+    desc: "Restaurants, cafes, and bars", 
+    img: "/images/restaurants.jpg" 
+  },
+  { 
+    title: "Health and Wellness", 
+    desc: "Gyms, fitness studios, and wellness centres", 
+    img: "/images/health.jpg" 
+  },
+  { 
+    title: "Beauty and Personal Care", 
+    desc: "Salons, barbershops, and skincare clinics", 
+    img: "/images/beauty.jpg" 
+  },
+  { 
+    title: "Hoteliers", 
+    desc: "Hotels, resorts, and travel-related businesses", 
+    img: "/images/hotels.jpg" 
+  },
+  { 
+    title: "Entertainment", 
+    desc: "Theaters, cinemas, and recreational facilities", 
+    img: "/images/entertainment.jpg" 
+  }
 ];
+
 
 const features = [
   {
@@ -39,29 +62,44 @@ const features = [
   },
   {
     title: 'Hyperlocal Network',
-    description: 'Become a part of the world\'s most hyperlocal network',
+    description: 'Become a part of world\'s most hyperlocal network',
     icon: Building2
   }
 ];
 
 const faqs = [
   {
-    question: 'What is BAEONN.com?',
-    answer: 'BAEONN is a platform that helps businesses acquire customers hyperlocally.'
+    question: "What is BAEONN.com?",
+    answer:
+      "BAEONN is a hyperlocal customer acquisition and customer retention platform that connects businesses with customers through targeted promotions and incentives.",
   },
   {
-    question: 'Is my business eligible to be a part of BAEONN?',
-    answer: 'Most local businesses are eligible to join BAEONN. This includes retail stores, restaurants, wellness centers, and more.'
+    question: "Is my business eligible to be a part of BAEONN?",
+    answer: "All businesses that are legitimate under the law are eligible to be a part of BAEONN.",
   },
   {
-    question: 'How much does it cost to register with BAEONN?',
-    answer: 'Registration is free. You only pay for successful customer interactions: ₹1 per click, ₹1 per reminder, and ₹3 per conversion.'
+    question: "How much does it cost to register with BAEONN?",
+    answer: "Free. It is literally free.",
+  },
+  {
+    question: "What are the things required to use BAEONN?",
+    answer: "A business that is running and a smartphone with good network connectivity is all that it takes to use BAEONN.",
+  },
+  {
+    question: "Is there any hidden cost or money that needs to be paid after registration?",
+    answer: "Not at all, it's completely free.",
   }
 ];
+
 
 function App() {
   const [currentBusinessType, setCurrentBusinessType] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -78,215 +116,180 @@ function App() {
       scrollTo: { y: sectionId, offsetY: 70 }, // Adjust `offsetY` for fixed header height
       ease: 'power2.out',
     });
+    setIsMenuOpen(false);
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-   
-            <h1 className="text-2xl font-bold text-gray-900">BAEONN</h1>
-            <div className="hidden md:flex items-center space-x-8">
-            <button
-                onClick={() => handleScrollToSection('#about')}
-                className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr"
-              >
-                What is Baeonn
-              </button>
-              <button
-                onClick={() => handleScrollToSection('#pricing')}
-                className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr"
-              >
-                Pricing
-              </button>
-              <a href="https://dashboard.baeonn.com" className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">
-                Get Started
-              </a>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <h1 className="text-2xl font-bold text-gray-900">BAEONN</h1>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto">
-        <AnimatedGradientText>
-        🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
-        <span
-          className={cn(
-            `inline animate-gradient bg-gradient-to-r from-[#4083ff] via-[#9c40ff] to-[#5640ff] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
-          )}
-        >
-          Introducing Baeonn
-        </span>
-        <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-      </AnimatedGradientText>
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 mt-5"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-8">
+            <button
+              onClick={() => handleScrollToSection("#about")}
+              className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr"
             >
-              Unlock Hyperlocal Customer Acquisition
-            </motion.h1>
-            <motion.div 
-              className="h-24 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              What is Baeonn
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#pricing")}
+              className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr"
             >
-              <motion.div
-                key={currentBusinessType}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-xl text-gray-600"
+              Pricing
+            </button>
+            <a
+              href="https://dashboard.baeonn.com"
+              className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors"
+            >
+              Get Started
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-gray-900 focus:outline-none"
+            onClick={handleToggleMenu}
+          >
+            {isMenuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <h2 className="text-2xl font-semibold text-blue-500 mb-2">
-                  {businessTypes[currentBusinessType].title}
-                </h2>
-                <p>{businessTypes[currentBusinessType].desc}</p>
-              </motion.div>
-            </motion.div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a 
-                href="https://dashboard.baeonn.com" 
-                className="group w-full sm:w-auto bg-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                Get Started <ArrowRight size={20} className=' group-hover:motion-preset-slide-right '/>
-              </a>
-              <a 
-                href="#demo" 
-                className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
-              >
-                Book a Demo
-              </a>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Drawer */}
+      {isMenuOpen && (
+        <div className="absolute top-16 right-4 w-64 bg-white shadow-lg z-40 rounded-lg">
+          <div className="flex flex-col items-center py-4 space-y-4">
+            <button
+              onClick={() => handleScrollToSection("#about")}
+              className="text-gray-600 hover:text-gray-900 text-lg"
+            >
+              What is Baeonn
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#pricing")}
+              className="text-gray-600 hover:text-gray-900 text-lg"
+            >
+              Pricing
+            </button>
+            <a
+              href="https://dashboard.baeonn.com"
+              className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors"
+            >
+              Get Started
+            </a>
           </div>
         </div>
-      </section>
+      )}
+    </header>
 
-      {/* What is BAEONN? Section */}
-<section id="about" className="py-20 bg-white">
-  <div className="container mx-auto px-6">
-    <motion.div 
-      className="max-w-3xl mx-auto text-center"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-        What is BAEONN?
-      </h2>
-      <p className="text-lg text-gray-600 mb-12">
-        BAEONN is a hyperlocal customer acquisition and retention platform that connects businesses with customers through targeted promotions and incentives. 
-        Our mission is to empower businesses by offering cost-effective solutions for engaging with customers at a local level, unlocking growth potential, and building lasting relationships.
-      </p>
-    </motion.div>
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto flex flex-col md:flex-row items-center">
+        {/* Text Section */}
+        <div className="w-full md:w-1/2 md:pr-10 mr-10 text-center md:text-left">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Unlock Hyperlocal Customer Acquisition
+          </motion.h1>
+          <motion.div
+            className="h-24 mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <motion.div
+              key={currentBusinessType}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="text-xl text-gray-600"
+            >
+              <h2 className="text-2xl font-semibold text-blue-500 mb-2">
+          {businessTypes[currentBusinessType].title}
+              </h2>
+              <p>{businessTypes[currentBusinessType].desc}</p>
+            </motion.div>
+          </motion.div>
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
+            <a
+              href="https://dashboard.baeonn.com"
+              className="group w-full sm:w-auto bg-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+            >
+              Get Started <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
+            </a>
+            <a
+              href="#demo"
+              className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
+            >
+              Book a Demo
+            </a>
+          </div>
+        </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {/* Feature 1 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        viewport={{ once: true }}
-      >
-        <Building2 className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">For Businesses</h3>
-        <p className="text-gray-600">
-          List your campaigns, reach new customers, and grow your local presence effectively through our intuitive platform.
-        </p>
-      </motion.div>
+        {/* Carousel Section */}
+        <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+          <motion.div
+            key={currentBusinessType}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden shadow-lg border-2 border-gray-100"
+          >
+            <img
+              src={businessTypes[currentBusinessType].img}
+              alt={businessTypes[currentBusinessType].title}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
 
-      {/* Feature 2 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        <Store className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Hyperlocal Solutions</h3>
-        <p className="text-gray-600">
-          Use hyperlocal targeting to reach customers in specific areas, ensuring your promotions are relevant and impactful.
-        </p>
-      </motion.div>
-
-      {/* Feature 3 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
-        viewport={{ once: true }}
-      >
-        <Tag className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Customer Engagement</h3>
-        <p className="text-gray-600">
-          Keep your customers engaged with personalized offers, loyalty programs, and timely reminders.
-        </p>
-      </motion.div>
-
-      {/* Feature 4 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.4 }}
-        viewport={{ once: true }}
-      >
-        <Users className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Affordable Pricing</h3>
-        <p className="text-gray-600">
-          Transparent pricing with zero hidden costs. Pay only for successful customer interactions.
-        </p>
-      </motion.div>
-
-      {/* Feature 5 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <ChevronDown className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Ease of Use</h3>
-        <p className="text-gray-600">
-          With a user-friendly dashboard, easily track campaign performance, customer data, and ROI in real-time.
-        </p>
-      </motion.div>
-
-      {/* Feature 6 */}
-      <motion.div
-        className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <ArrowRight className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Scalable Platform</h3>
-        <p className="text-gray-600">
-          Suitable for businesses of all sizes, from local shops to national brands, with scalable solutions.
-        </p>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-
-      {/* Stats Section */}
-      <section className="py-20 bg-gray-50">
+     {/* Stats Section */}
+     <section className="py-20 bg-gray-50">
   <div className="container mx-auto px-6">
     {/* Section Heading */}
     <div className="text-center mb-12">
@@ -333,31 +336,128 @@ function App() {
   </div>
 </section>
 
+      {/* What is BAEONN? Section */}
+<section id="about" className="py-20 bg-white">
+  <div className="container mx-auto px-6">
+    <motion.div 
+      className="max-w-3xl mx-auto text-center"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        What is BAEONN?
+      </h2>
+      <p className="text-lg text-gray-600 mb-12">
+        BAEONN connects businesses with local customers through targeted promotions and incentives, offering cost-effective solutions for growth and engagement.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {[
+    {
+      icon: <Building2 className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "For Businesses",
+      desc: "List your campaigns, reach new customers, and grow your local presence effectively through our intuitive platform."
+    },
+    {
+      icon: <Store className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "Hyperlocal Solutions",
+      desc: "Use hyperlocal targeting to reach customers in specific areas, ensuring your promotions are relevant and impactful."
+    },
+    {
+      icon: <Tag className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "Customer Engagement",
+      desc: "Keep your customers engaged with personalized offers, loyalty programs, and timely reminders."
+    },
+    {
+      icon: <Users className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "Affordable Pricing",
+      desc: "Transparent pricing with zero hidden costs. Pay only for successful customer interactions."
+    },
+    {
+      icon: <ChevronDown className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "Ease of Use",
+      desc: "With a user-friendly dashboard, easily track campaign performance, customer data, and ROI in real-time."
+    },
+    {
+      icon: <ArrowRight className="w-10 h-10 text-blue-500 mb-4" />,
+      title: "Scalable Platform",
+      desc: "Suitable for businesses of all sizes, from local shops to national brands, with scalable solutions."
+    }
+  ].map((feature, index) => (
+    <motion.div
+      key={index}
+      className="relative bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden group"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      viewport={{ once: true }}
+    >
+      {/* Icon */}
+      <div>{feature.icon}</div>
+
+      {/* Title */}
+      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-500 transition-colors">
+        {feature.title}
+      </h3>
+
+      {/* Description (Hidden by default) */}
+      <motion.p
+        className="absolute inset-0 bg-gray-50 text-gray-600 flex items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-300"
+      >
+        {feature.desc}
+      </motion.p>
+    </motion.div>
+  ))}
+</div>
+
+  </div>
+</section>
+
+
+     
+
 
       {/* Features Section */}
       <section id="features" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-        Whats in it for You?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {features.map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            viewport={{ once: true }}
-          >
+  <div className="container mx-auto px-6">
+    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+      Whats in it for You?
+    </h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <motion.div
+          key={feature.title}
+          className="relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow group overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          viewport={{ once: true }}
+        >
+          {/* Icon */}
+          <div>
             <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-            <p className="text-gray-600">{feature.description}</p>
-          </motion.div>
-        ))}
           </div>
-        </div>
-      </section>
+
+          {/* Title */}
+          <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-500 transition-colors">
+            {feature.title}
+          </h3>
+
+          {/* Description */}
+          <motion.div
+            className="absolute bottom-0 left-0 w-full bg-gray-50 p-6 text-gray-600 text-sm text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out rounded-b-2xl"
+          >
+            {feature.description}
+          </motion.div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-gray-50">
@@ -401,45 +501,45 @@ function App() {
 
       {/* FAQ Section */}
       <section id="faq" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-        Frequently Asked Questions
-          </h2>
-          <div className="max-w-2xl mx-auto space-y-4">
-        {faqs.map((faq, index) => (
-          <motion.div 
-            key={index} 
-            className="bg-white rounded-lg shadow-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-          >
-            <button
-          className="w-full px-6 py-4 text-left flex items-center justify-between"
-          onClick={() => setOpenFaqIndex(openFaqIndex === index ? -1 : index)}
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-2xl mx-auto space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-lg shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-          <span className="font-semibold text-gray-900">{faq.question}</span>
-          {openFaqIndex === index ? (
-            <ChevronUp className="w-5 h-5 text-gray-500" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-gray-500" />
-          )}
-            </button>
-            {openFaqIndex === index && (
-          <motion.div 
-            className="px-6 pb-4 text-gray-600"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            transition={{ duration: 0.4 }}
-          >
-            {faq.answer}
-          </motion.div>
-            )}
-          </motion.div>
-        ))}
-          </div>
+              <button
+                className="w-full px-6 py-4 text-left flex items-center justify-between"
+                onClick={() => setOpenFaqIndex(openFaqIndex === index ? -1 : index)}
+              >
+                <span className="font-semibold text-gray-900">{faq.question}</span>
+                {openFaqIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                )}
+              </button>
+              {openFaqIndex === index && (
+                <motion.div
+                  className="px-6 pb-4 text-gray-600"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {faq.answer}
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
