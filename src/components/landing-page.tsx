@@ -102,7 +102,7 @@ function App() {
               >
                 Pricing
               </button>
-              <a href="https://dashboard.baeonn.com" className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors">
+              <a href="https://dashboard.baeonn.com" className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">
                 Get Started
               </a>
             </div>
@@ -117,7 +117,7 @@ function App() {
         🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
         <span
           className={cn(
-            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
+            `inline animate-gradient bg-gradient-to-r from-[#4083ff] via-[#9c40ff] to-[#5640ff] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
           )}
         >
           Introducing Baeonn
@@ -147,7 +147,7 @@ function App() {
                 transition={{ duration: 0.5 }}
                 className="text-xl text-gray-600"
               >
-                <h2 className="text-2xl font-semibold text-orange-500 mb-2">
+                <h2 className="text-2xl font-semibold text-blue-500 mb-2">
                   {businessTypes[currentBusinessType].title}
                 </h2>
                 <p>{businessTypes[currentBusinessType].desc}</p>
@@ -156,7 +156,7 @@ function App() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a 
                 href="https://dashboard.baeonn.com" 
-                className="group w-full sm:w-auto bg-orange-500 text-white px-8 py-3 rounded-full hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto bg-blue-500 text-white px-8 py-3 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
               >
                 Get Started <ArrowRight size={20} className=' group-hover:motion-preset-slide-right '/>
               </a>
@@ -199,7 +199,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        <Building2 className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <Building2 className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">For Businesses</h3>
         <p className="text-gray-600">
           List your campaigns, reach new customers, and grow your local presence effectively through our intuitive platform.
@@ -214,7 +214,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <Store className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <Store className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Hyperlocal Solutions</h3>
         <p className="text-gray-600">
           Use hyperlocal targeting to reach customers in specific areas, ensuring your promotions are relevant and impactful.
@@ -229,7 +229,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.3 }}
         viewport={{ once: true }}
       >
-        <Tag className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <Tag className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Customer Engagement</h3>
         <p className="text-gray-600">
           Keep your customers engaged with personalized offers, loyalty programs, and timely reminders.
@@ -244,7 +244,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.4 }}
         viewport={{ once: true }}
       >
-        <Users className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <Users className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Affordable Pricing</h3>
         <p className="text-gray-600">
           Transparent pricing with zero hidden costs. Pay only for successful customer interactions.
@@ -259,7 +259,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.5 }}
         viewport={{ once: true }}
       >
-        <ChevronDown className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <ChevronDown className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Ease of Use</h3>
         <p className="text-gray-600">
           With a user-friendly dashboard, easily track campaign performance, customer data, and ROI in real-time.
@@ -274,7 +274,7 @@ function App() {
         transition={{ duration: 0.4, delay: 0.6 }}
         viewport={{ once: true }}
       >
-        <ArrowRight className="w-10 h-10 text-orange-500 mb-4 hover:motion-preset-shake motion-duration-700" />
+        <ArrowRight className="w-10 h-10 text-blue-500 mb-4 hover:motion-preset-shake motion-duration-700" />
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Scalable Platform</h3>
         <p className="text-gray-600">
           Suitable for businesses of all sizes, from local shops to national brands, with scalable solutions.
@@ -305,7 +305,7 @@ function App() {
         whileHover={{ y: -5 }}
         transition={{ duration: 0.2 }}
       >
-        <Building2 className="w-12 h-12 text-orange-500 mx-auto mb-4" />
+        <Building2 className="w-12 h-12 text-blue-500 mx-auto mb-4" />
         <h3 className="text-4xl font-bold text-gray-900 mb-2"> <NumberTicker value={150} />+</h3>
         <p className="text-gray-600">Businesses Onboard</p>
       </motion.div>
@@ -315,7 +315,7 @@ function App() {
         whileHover={{ y: -5 }}
         transition={{ duration: 0.2 }}
       >
-        <Store className="w-12 h-12 text-orange-500 mx-auto mb-4" />
+        <Store className="w-12 h-12 text-blue-500 mx-auto mb-4" />
         <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={300} />+</h3>
         <p className="text-gray-600">Stores Onboard</p>
       </motion.div>
@@ -325,7 +325,7 @@ function App() {
         whileHover={{ y: -5 }}
         transition={{ duration: 0.2 }}
       >
-        <Tag className="w-12 h-12 text-orange-500 mx-auto mb-4" />
+        <Tag className="w-12 h-12 text-blue-500 mx-auto mb-4" />
         <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={200} />+</h3>
         <p className="text-gray-600">Deals Listed</p>
       </motion.div>
@@ -350,7 +350,7 @@ function App() {
             transition={{ delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            <feature.icon className="w-12 h-12 text-orange-500 mb-4" />
+            <feature.icon className="w-12 h-12 text-blue-500 mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
             <p className="text-gray-600">{feature.description}</p>
           </motion.div>
@@ -390,7 +390,7 @@ function App() {
         <div className="p-8 bg-gray-50">
           <a 
             href="#campaign" 
-            className="block w-full bg-orange-500 text-white text-center px-8 py-3 rounded-full hover:bg-orange-600 transition-colors"
+            className="block w-full bg-blue-500 text-white text-center px-8 py-3 rounded-full hover:bg-blue-600 transition-colors"
           >
             Initiate a Targeted Campaign
           </a>
@@ -454,11 +454,11 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
               <div className="space-y-2">
-                <a href="tel:+917695841500" className="flex items-center text-gray-400 hover:text-orange-500">
+                <a href="tel:+917695841500" className="flex items-center text-gray-400 hover:text-blue-500">
                   <Phone className="w-5 h-5 mr-2" />
                   +91 7695841500
                 </a>
-                <a href="mailto:contact@baeonn.com" className="flex items-center text-gray-400 hover:text-orange-500">
+                <a href="mailto:contact@baeonn.com" className="flex items-center text-gray-400 hover:text-blue-500">
                   <Mail className="w-5 h-5 mr-2" />
                   contact@baeonn.com
                 </a>
@@ -467,16 +467,16 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-orange-500">
+                <a href="#" className="text-gray-400 hover:text-blue-500">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-orange-500">
+                <a href="#" className="text-gray-400 hover:text-blue-500">
                   <Twitter className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-orange-500">
+                <a href="#" className="text-gray-400 hover:text-blue-500">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-orange-500">
+                <a href="#" className="text-gray-400 hover:text-blue-500">
                   <Linkedin className="w-6 h-6" />
                 </a>
               </div>
