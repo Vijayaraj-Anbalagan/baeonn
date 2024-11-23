@@ -571,16 +571,16 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-bay-of-many-800">
+                <a href="https://www.facebook.com/BAEON.CO" className="text-gray-400 hover:text-bay-of-many-800">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-bay-of-many-800">
+                <a href="https://x.com/BAEON15" className="text-gray-400 hover:text-bay-of-many-800">
                   <Twitter className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-bay-of-many-800">
+                <a href="https://www.instagram.com/baeon_co/" className="text-gray-400 hover:text-bay-of-many-800">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-bay-of-many-800">
+                <a href="https://www.linkedin.com/company/baeonn/" className="text-gray-400 hover:text-bay-of-many-800">
                   <Linkedin className="w-6 h-6" />
                 </a>
               </div>
