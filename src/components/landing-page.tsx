@@ -578,7 +578,7 @@ function App() {
           <a href="https://x.com/BAEON15" className="text-gray-400 hover:text-orange-500">
             <Twitter className="w-6 h-6" />
           </a>
-          <a href="https://www.instagram.com/baeon_co/" className="text-gray-400 hover:text-orange-500">
+          <a href="https://www.instagram.com/baeonn?igsh=MWtzY2phdmtwbHA2NQ==" className="text-gray-400 hover:text-orange-500">
             <Instagram className="w-6 h-6" />
           </a>
           <a href="https://www.linkedin.com/company/baeonn/" className="text-gray-400 hover:text-orange-500">
