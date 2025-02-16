@@ -9,6 +9,7 @@ import Image from 'next/image';
 import SparklesText from './ui/sparkles-text';
 import { BenefitsSection, ProductIntro } from './product-sections';
 import HowItWorksSection from './HowItWorksSection';
+import TaglineStrip from './TaglineStrip';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -306,6 +307,7 @@ function App() {
         </div>
       </div>
         </section>
+        <TaglineStrip />
 
         <ProductIntro />
         <HowItWorksSection  />
