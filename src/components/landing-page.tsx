@@ -279,7 +279,7 @@ function App() {
           Get Started <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
         </a>
         <a
-          href="#demo"
+          href="https://share.hsforms.com/1ihARuY2ZRUCpe6M6qvODOgsqndp"
           className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
         >
           Book a Demo
