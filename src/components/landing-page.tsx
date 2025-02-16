@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Store, Tag, Users, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Building2, Store, Tag, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import NumberTicker from './ui/number-ticker';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import Link from 'next/link';
 import Image from 'next/image';
 import SparklesText from './ui/sparkles-text';
+import { BenefitsSection, ProductIntro } from './product-sections';
+import HowItWorksSection from './HowItWorksSection';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -20,55 +22,43 @@ if (typeof window !== 'undefined') {
 
 const businessTypes = [
   { 
-    title: "Retail", 
-    desc: "Supermarket, Hypermarket, local shops and boutiques", 
-    img: "/images/retail.jpg" 
+    title: "Consumers", 
+    desc: "Individuals seeking personalized shopping experiences", 
+    img: "/images/consumers.jpg" // Search for "diverse consumers shopping" image
   },
   { 
-    title: "Restaurants", 
-    desc: "Restaurants, cafes, and bars", 
-    img: "/images/restaurants.jpg" 
+    title: "Local Businesses", 
+    desc: "Small to medium local shops and service providers", 
+    img: "/images/local-businesses.jpg" // Search for "local business storefront" image
   },
   { 
-    title: "Health and Wellness", 
-    desc: "Gyms, fitness studios, and wellness centres", 
-    img: "/images/health.jpg" 
+    title: "Digital Platforms", 
+    desc: "Online marketplaces and digital service providers", 
+    img: "/images/digital-platforms.jpg" // Search for "digital platform interface" image
   },
   { 
-    title: "Beauty and Personal Care", 
-    desc: "Salons, barbershops, and skincare clinics", 
-    img: "/images/beauty.jpg" 
+    title: "Advertisers & Affiliates", 
+    desc: "Marketing agencies and affiliate partners", 
+    img: "/images/advertisers-affiliates.jpg" // Search for "advertising agency creative" image
   },
   { 
-    title: "Hoteliers", 
-    desc: "Hotels, resorts, and travel-related businesses", 
-    img: "/images/hotels.jpg" 
+    title: "Brands", 
+    desc: "Recognized brands looking to expand digital presence", 
+    img: "/images/brands.jpg" // Search for "brand logo collage" image
   },
   { 
-    title: "Entertainment", 
-    desc: "Theaters, cinemas, and recreational facilities", 
-    img: "/images/entertainment.jpg" 
+    title: "Utility Providers", 
+    desc: "Companies providing essential services and utilities", 
+    img: "/images/utility-providers.jpg" // Search for "utility service provider" image
+  },
+  { 
+    title: "Communities & Institutions", 
+    desc: "Organizations, educational and community institutions", 
+    img: "/images/communities-institutions.jpg" // Search for "community institution" image
   }
 ];
 
 
-const features = [
-  {
-    title: 'Hyperlocal Acquisition',
-    description: 'Acquire new customers from every nook and corner',
-    icon: Users
-  },
-  {
-    title: 'Hyperlocal Reach',
-    description: 'Reach people who cannot be reached otherwise',
-    icon: Store
-  },
-  {
-    title: 'Hyperlocal Network',
-    description: 'Become a part of world\'s most hyperlocal network',
-    icon: Building2
-  }
-];
 
 const faqs = [
   {
@@ -137,10 +127,22 @@ function App() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => handleScrollToSection("#about")}
+              onClick={() => handleScrollToSection("#products")}
+              className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr hover:underline underline-offset-4" 
+            >
+              Products
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#howit")}
               className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr hover:underline underline-offset-4"
             >
-              What is Baeonn
+              How it Works
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#whyus")}
+              className="text-gray-600 hover:text-gray-900 nav-link nav-link-ltr hover:underline underline-offset-4"
+            >
+              Why Us
             </button>
             <button
               onClick={() => handleScrollToSection("#pricing")}
@@ -201,10 +203,22 @@ function App() {
         <div className="absolute top-16 right-5 w-64 bg-white shadow-lg z-40 rounded-lg">
           <div className="flex flex-col items-center py-4 space-y-4">
             <button
-              onClick={() => handleScrollToSection("#about")}
+              onClick={() => handleScrollToSection("#products")}
               className="text-gray-600 hover:text-gray-900 text-lg"
             >
-              What is Baeonn
+              Products
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#howit")}
+              className="text-gray-600 hover:text-gray-900 text-lg"
+            >
+              How it Works
+            </button>
+            <button
+              onClick={() => handleScrollToSection("#whyus")}
+              className="text-gray-600 hover:text-gray-900 text-lg"
+            >
+              Why Us
             </button>
             <button
               onClick={() => handleScrollToSection("#pricing")}
@@ -235,7 +249,7 @@ function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
           >
-        Unlock Hyperlocal Customer Acquisition
+       Smarter Shopping, Powerful Marketing, Monetizing Networks
           </motion.h1>
           <motion.div
         className="h-24 mb-8"
@@ -293,6 +307,9 @@ function App() {
       </div>
         </section>
 
+        <ProductIntro />
+        <HowItWorksSection  />
+
      {/* Stats Section */}
      <section className="py-20 bg-gray-50">
   <div className="container mx-auto px-6">
@@ -341,8 +358,10 @@ function App() {
   </div>
 </section>
 
-      {/* What is BAEONN? Section */}
-<section id="about" className="py-20 bg-white">
+   <BenefitsSection />
+
+ {/* What is BAEONN? Section */}
+ <section id="about" className="py-20 bg-white">
   <div className="container mx-auto px-6">
     <motion.div 
       className="max-w-3xl mx-auto text-center"
@@ -359,111 +378,8 @@ function App() {
       </p>
     </motion.div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {[
-    {
-      icon: <Building2 className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "For Businesses",
-      desc: "List your campaigns, reach new customers, and grow your local presence effectively through our intuitive platform."
-    },
-    {
-      icon: <Store className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "Hyperlocal Solutions",
-      desc: "Use hyperlocal targeting to reach customers in specific areas, ensuring your promotions are relevant and impactful."
-    },
-    {
-      icon: <Tag className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "Customer Engagement",
-      desc: "Keep your customers engaged with personalized offers, loyalty programs, and timely reminders."
-    },
-    {
-      icon: <Users className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "Affordable Pricing",
-      desc: "Transparent pricing with zero hidden costs. Pay only for successful customer interactions."
-    },
-    {
-      icon: <ChevronDown className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "Ease of Use",
-      desc: "With a user-friendly dashboard, easily track campaign performance, customer data, and ROI in real-time."
-    },
-    {
-      icon: <ArrowRight className="w-10 h-10 text-bay-of-many-800 mb-4" />,
-      title: "Scalable Platform",
-      desc: "Suitable for businesses of all sizes, from local shops to national brands, with scalable solutions."
-    }
-  ].map((feature, index) => (
-    <motion.div
-      key={index}
-      className="relative bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden group"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      viewport={{ once: true }}
-    >
-      {/* Icon */}
-      <div>{feature.icon}</div>
-
-      {/* Title */}
-      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-bay-of-many-800 transition-colors">
-        {feature.title}
-      </h3>
-
-      {/* Description (Hidden by default) */}
-      <motion.p
-        className="absolute inset-0 bg-gray-50 text-gray-600 flex items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-300"
-      >
-        {feature.desc}
-      </motion.p>
-    </motion.div>
-  ))}
-</div>
-
   </div>
 </section>
-
-
-     
-
-
-      {/* Features Section */}
-      <section id="features" className="py-20">
-  <div className="container mx-auto px-6">
-    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-      Whats in it for You?
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {features.map((feature, index) => (
-        <motion.div
-          key={feature.title}
-          className="relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow group overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-          viewport={{ once: true }}
-        >
-          {/* Icon */}
-          <div>
-            <feature.icon className="w-12 h-12 text-bay-of-many-800 mb-4" />
-          </div>
-
-          {/* Title */}
-          <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-bay-of-many-800 transition-colors">
-            {feature.title}
-          </h3>
-
-          {/* Description */}
-          <motion.div
-            className="absolute bottom-0 left-0 w-full bg-gray-50 p-6 text-gray-600 text-sm text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out rounded-b-2xl"
-          >
-            {feature.description}
-          </motion.div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
