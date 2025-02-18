@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Store, Tag, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Building2, Store, Tag, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import NumberTicker from './ui/number-ticker';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -10,6 +10,7 @@ import SparklesText from './ui/sparkles-text';
 import { BenefitsSection, ProductIntro } from './product-sections';
 import HowItWorksSection from './HowItWorksSection';
 import TaglineStrip from './TaglineStrip';
+import SynchronizedCarousels from './SynchronizedCarousels';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -21,23 +22,6 @@ if (typeof window !== 'undefined') {
   });
 }
 
-const businessTypes = [
-  { 
-    title: "Consumers", 
-    desc: "Individuals seeking personalized shopping experiences", 
-    img: "/images/15.png" // Search for "diverse consumers shopping" image
-  },
-  { 
-    title: "Digital Platforms", 
-    desc: "Online marketplaces and digital service providers", 
-    img: "/images/16.png" // Search for "digital platform interface" image
-  },
-  { 
-    title: "Local Businesses", 
-    desc: "Small and medium-sized enterprises in local communities", 
-    img: "/images/17.png" // Search for "local business storefront" image
-  },
-];
 
 
 
@@ -72,7 +56,6 @@ function App() {
     () => ["Smarter Shopping", "Powerful Marketing", "Monetizing Networks"],
     []
   )
-  const [currentBusinessType, setCurrentBusinessType] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -87,12 +70,6 @@ function App() {
     return () => clearTimeout(timeoutId)
   }, [titleNumber, titles])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentBusinessType((prev) => (prev + 1) % businessTypes.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
 
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -232,74 +209,7 @@ function App() {
     </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-  <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
-    {/* Text Section */}
-    <div className="w-full md:w-1/2 md:pr-10 text-center md:text-left">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
-          AI Powered
-        </h1>
-        <div className="h-16 md:h-20 flex items-center mb-6 overflow-hidden relative">
-          {titles.map((title, index) => (
-            <motion.span
-              key={index}
-              className="absolute w-full text-4xl md:text-5xl font-semibold text-orange-500"
-              initial={{ opacity: 0, y: 50 }}
-              animate={
-                titleNumber === index
-                  ? { y: 0, opacity: 1 }
-                  : { y: titleNumber > index ? -50 : 50, opacity: 0 }
-              }
-              transition={{ type: "spring", stiffness: 50 }}
-            >
-              {title}
-            </motion.span>
-          ))}
-        </div>
-        <p className="text-gray-700 text-lg mb-8">
-          Transform your business with our advanced AI solutions
-        </p>
-        <div className="flex flex-col sm:flex-row md:justify-start gap-4">
-          <a
-            href="https://bae.baeonn.com"
-            className="group w-full sm:w-auto bg-bay-of-many-800 text-white px-8 py-3 rounded-full hover:bg-bay-of-many-900 transition-colors flex items-center justify-center gap-2"
-          >
-            Shop Smartly <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
-          </a>
-          <a
-            href="https://dashboard.baeonn.com"
-            className="w-full sm:w-auto border-2 border-bay-of-many-800 text-bay-of-many-800 px-8 py-3 rounded-full hover:bg-bay-of-many-900 hover:text-white transition-colors"
-          >
-            Grow with Bae
-          </a>
-        </div>
-      </motion.div>
-    </div>
-
-    {/* Carousel Section */}
-    <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
-      <motion.div
-        key={currentBusinessType}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 10 }}
-        exit={{ opacity: 0, x: 5 }}
-        transition={{ duration: 0.25 }}
-        className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden"
-      >
-        <img
-          src={businessTypes[currentBusinessType].img}
-          alt={businessTypes[currentBusinessType].title}
-          className="w-full h-full object-cover mix-blend-soft-light"
-        />
-      </motion.div>
-    </div>
-  </div>
-</section>
+    <SynchronizedCarousels/>
         <TaglineStrip />
 
         <ProductIntro />
