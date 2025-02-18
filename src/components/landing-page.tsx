@@ -25,23 +25,18 @@ const businessTypes = [
   { 
     title: "Consumers", 
     desc: "Individuals seeking personalized shopping experiences", 
-    img: "/images/consumers.jpg" // Search for "diverse consumers shopping" image
+    img: "/images/15.png" // Search for "diverse consumers shopping" image
   },
   { 
     title: "Digital Platforms", 
     desc: "Online marketplaces and digital service providers", 
-    img: "/images/digital-platforms.jpg" // Search for "digital platform interface" image
+    img: "/images/16.png" // Search for "digital platform interface" image
   },
   { 
-    title: "Brands", 
-    desc: "Recognized brands looking to expand digital presence", 
-    img: "/images/brands.jpg" // Search for "brand logo collage" image
+    title: "Local Businesses", 
+    desc: "Small and medium-sized enterprises in local communities", 
+    img: "/images/17.png" // Search for "local business storefront" image
   },
-  { 
-    title: "Utility Providers", 
-    desc: "Companies providing essential services and utilities", 
-    img: "/images/utility-providers.jpg" // Search for "utility service provider" image
-  }
 ];
 
 
@@ -291,15 +286,15 @@ function App() {
       <motion.div
         key={currentBusinessType}
         initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 20 }}
-        transition={{ duration: 0.5 }}
-        className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden shadow-lg border-2 border-gray-100"
+        animate={{ opacity: 1, x: 10 }}
+        exit={{ opacity: 0, x: 5 }}
+        transition={{ duration: 0.25 }}
+        className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden"
       >
         <img
           src={businessTypes[currentBusinessType].img}
           alt={businessTypes[currentBusinessType].title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover mix-blend-soft-light"
         />
       </motion.div>
     </div>
