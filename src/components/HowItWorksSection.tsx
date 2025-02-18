@@ -4,10 +4,10 @@ import {
   Search, 
   Gift, 
   MapPin, 
-  Rocket, 
-  PenTool, 
-  LineChart,
-  ChevronRight
+  ChevronRight,
+  CheckCircle,
+  Megaphone,
+  BarChart2
 } from 'lucide-react';
 
 const HowItWorksSection = () => {
@@ -25,24 +25,24 @@ const HowItWorksSection = () => {
       },
       {
         icon: MapPin,
-        title: "Location-Based Perks",
+        title: "Enjoy Location-Based Perks",
         description: "Experience gamified shopping with local rewards"
       }
     ],
     businesses: [
       {
-        icon: Rocket,
-        title: "Launch AI Campaigns",
+        icon: CheckCircle,
+        title: "AI-Powered Campaigns",
         description: "Create targeted customer acquisition campaigns"
       },
       {
-        icon: PenTool,
-        title: "Digital Promotions",
+        icon: Megaphone,
+        title: "Automated Promotions",
         description: "Set up promotional campaigns effortlessly"
       },
       {
-        icon: LineChart,
-        title: "Track Performance",
+        icon: BarChart2,
+        title: "Track & Optimize Performance",
         description: "Monitor and optimize with real-time insights"
       }
     ]

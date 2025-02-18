@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Store, Tag, ArrowRight, ChevronDown, ChevronUp, Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import NumberTicker from './ui/number-ticker';
@@ -28,19 +28,9 @@ const businessTypes = [
     img: "/images/consumers.jpg" // Search for "diverse consumers shopping" image
   },
   { 
-    title: "Local Businesses", 
-    desc: "Small to medium local shops and service providers", 
-    img: "/images/local-businesses.jpg" // Search for "local business storefront" image
-  },
-  { 
     title: "Digital Platforms", 
     desc: "Online marketplaces and digital service providers", 
     img: "/images/digital-platforms.jpg" // Search for "digital platform interface" image
-  },
-  { 
-    title: "Advertisers & Affiliates", 
-    desc: "Marketing agencies and affiliate partners", 
-    img: "/images/advertisers-affiliates.jpg" // Search for "advertising agency creative" image
   },
   { 
     title: "Brands", 
@@ -51,11 +41,6 @@ const businessTypes = [
     title: "Utility Providers", 
     desc: "Companies providing essential services and utilities", 
     img: "/images/utility-providers.jpg" // Search for "utility service provider" image
-  },
-  { 
-    title: "Communities & Institutions", 
-    desc: "Organizations, educational and community institutions", 
-    img: "/images/communities-institutions.jpg" // Search for "community institution" image
   }
 ];
 
@@ -87,6 +72,11 @@ const faqs = [
 
 
 function App() {
+  const [titleNumber, setTitleNumber] = useState(0)
+  const titles = useMemo(
+    () => ["Smarter Shopping", "Powerful Marketing", "Monetizing Networks"],
+    []
+  )
   const [currentBusinessType, setCurrentBusinessType] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,7 +85,14 @@ function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setTitleNumber(titleNumber === titles.length - 1 ? 0 : titleNumber + 1)
+    }, 2000)
+    return () => clearTimeout(timeoutId)
+  }, [titleNumber, titles])
+
+  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBusinessType((prev) => (prev + 1) % businessTypes.length);
     }, 3000);
@@ -241,124 +238,125 @@ function App() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
-        {/* Text Section */}
-        <div className="w-full md:w-1/2 md:pr-10 text-center md:text-left">
-          <motion.h1
-        className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 mt-5"
+  <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
+    {/* Text Section */}
+    <div className="w-full md:w-1/2 md:pr-10 text-center md:text-left">
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-          >
-       Smarter Shopping, Powerful Marketing, Monetizing Networks
-          </motion.h1>
-          <motion.div
-        className="h-24 mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-          >
-        <motion.div
-          key={currentBusinessType}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-          className="text-xl text-gray-600"
-        >
-          <h2 className="text-2xl font-semibold text-bay-of-many-800 mb-2">
-            {businessTypes[currentBusinessType].title}
-          </h2>
-          <p>{businessTypes[currentBusinessType].desc}</p>
-        </motion.div>
-          </motion.div>
-          <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-        <a
-          href="https://dashboard.baeonn.com"
-          className="group w-full sm:w-auto bg-bay-of-many-800 text-white px-8 py-3 rounded-full hover:bg-bay-of-many-900 transition-colors flex items-center justify-center gap-2"
-        >
-          Get Started <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
-        </a>
-        <a
-          href="https://share.hsforms.com/1ihARuY2ZRUCpe6M6qvODOgsqndp"
-          className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-colors"
-        >
-          Book a Demo
-        </a>
-          </div>
+      >
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+          AI Powered
+        </h1>
+        <div className="h-16 md:h-20 flex items-center mb-6 overflow-hidden relative">
+          {titles.map((title, index) => (
+            <motion.span
+              key={index}
+              className="absolute w-full text-4xl md:text-5xl font-semibold text-orange-500"
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                titleNumber === index
+                  ? { y: 0, opacity: 1 }
+                  : { y: titleNumber > index ? -50 : 50, opacity: 0 }
+              }
+              transition={{ type: "spring", stiffness: 50 }}
+            >
+              {title}
+            </motion.span>
+          ))}
         </div>
+        <p className="text-gray-700 text-lg mb-8">
+          Transform your business with our advanced AI solutions
+        </p>
+        <div className="flex flex-col sm:flex-row md:justify-start gap-4">
+          <a
+            href="https://bae.baeonn.com"
+            className="group w-full sm:w-auto bg-bay-of-many-800 text-white px-8 py-3 rounded-full hover:bg-bay-of-many-900 transition-colors flex items-center justify-center gap-2"
+          >
+            Shop Smartly <ArrowRight size={20} className="group-hover:motion-preset-slide-right" />
+          </a>
+          <a
+            href="https://dashboard.baeonn.com"
+            className="w-full sm:w-auto border-2 border-bay-of-many-800 text-bay-of-many-800 px-8 py-3 rounded-full hover:bg-bay-of-many-900 hover:text-white transition-colors"
+          >
+            Grow with Bae
+          </a>
+        </div>
+      </motion.div>
+    </div>
 
-        {/* Carousel Section */}
-        <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
-          <motion.div
+    {/* Carousel Section */}
+    <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+      <motion.div
         key={currentBusinessType}
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 20 }}
         transition={{ duration: 0.5 }}
         className="relative w-[80%] h-[300px] sm:h-[400px] rounded-[30px] overflow-hidden shadow-lg border-2 border-gray-100"
-          >
+      >
         <img
           src={businessTypes[currentBusinessType].img}
           alt={businessTypes[currentBusinessType].title}
           className="w-full h-full object-cover"
         />
-          </motion.div>
-        </div>
-      </div>
-        </section>
+      </motion.div>
+    </div>
+  </div>
+</section>
         <TaglineStrip />
 
         <ProductIntro />
         <HowItWorksSection  />
 
      {/* Stats Section */}
-     <section className="py-20 bg-gray-50">
-  <div className="container mx-auto px-6">
-    {/* Section Heading */}
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        Our Impact in Numbers
-      </h2>
-      <p className="text-lg text-gray-600 mt-3">
-        See how BAEONN is helping businesses grow and succeed locally.
-      </p>
-    </div>
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        {/* Section Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            🚀 Our Impact So Far
+          </h2>
+          <p className="text-lg text-gray-600 mt-3">
+            See how BAEONN is helping businesses grow and succeed locally.
+          </p>
+        </div>
 
-    {/* Statistics */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <motion.div
-        className="bg-white p-8 rounded-2xl shadow-sm text-center"
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.2 }}
-      >
-        <Building2 className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
-        <h3 className="text-4xl font-bold text-gray-900 mb-2"> <NumberTicker value={150} />+</h3>
-        <p className="text-gray-600">Businesses Onboard</p>
-      </motion.div>
+        {/* Statistics */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="bg-white p-8 rounded-2xl shadow-sm text-center"
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Store className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
+            <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={400} />+</h3>
+            <p className="text-gray-600">Stores Onboard</p>
+          </motion.div>
 
-      <motion.div
-        className="bg-white p-8 rounded-2xl shadow-sm text-center"
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.2 }}
-      >
-        <Store className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
-        <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={300} />+</h3>
-        <p className="text-gray-600">Stores Onboard</p>
-      </motion.div>
+          <motion.div
+            className="bg-white p-8 rounded-2xl shadow-sm text-center"
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Tag className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
+            <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={40} />+</h3>
+            <p className="text-gray-600">Exclusive Deals</p>
+          </motion.div>
 
-      <motion.div
-        className="bg-white p-8 rounded-2xl shadow-sm text-center"
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.2 }}
-      >
-        <Tag className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
-        <h3 className="text-4xl font-bold text-gray-900 mb-2"><NumberTicker value={200} />+</h3>
-        <p className="text-gray-600">Deals Listed</p>
-      </motion.div>
-    </div>
-  </div>
-</section>
+          <motion.div
+            className="bg-white p-8 rounded-2xl shadow-sm text-center"
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Building2 className="w-12 h-12 text-bay-of-many-800 mx-auto mb-4" />
+            <h3 className="text-4xl font-bold text-gray-900 mb-2">AI-driven</h3>
+            <p className="text-gray-600">Shopping & Marketing Revolution</p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
 
    <BenefitsSection />
 
@@ -464,6 +462,29 @@ function App() {
       </div>
     </section>
 
+
+    {/* Final CTA Section */}
+    <section className="py-20 bg-bay-of-many-100 text-bay-of-many-800 text-center">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-bay-of-many-800">
+          The Future of Shopping & Marketing is Here.
+        </h2>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+            href="https://bae.baeonn.com/download"
+            className="bg-bay-of-many-800 text-white px-8 py-3 rounded-full hover:bg-bay-of-many-900 transition-colors"
+            >
+            Download BAE
+            </a>
+            <a
+            href="https://dashboard.baeonn.com/join"
+            className="bg-white text-bay-of-many-800 px-8 py-3 rounded-full hover:bg-gray-200 transition-colors"
+            >
+            Join BAE Business
+            </a>
+        </div>
+      </div>
+    </section>
       {/* Footer */}
       <footer className="bg-bay-of-many-950 text-white py-12">
   <div className="container mx-auto px-6">
