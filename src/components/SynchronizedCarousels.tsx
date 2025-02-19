@@ -52,7 +52,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
               AI Powered
             </h1>
-            <div className="h-16 md:h-20 flex items-center mb-6 overflow-hidden relative">
+            <div className="h-20 flex items-center mb-6 overflow-hidden relative">
               <AnimatePresence mode="wait">
                 {titles.map((title, index) => (
                   <motion.span
@@ -108,7 +108,7 @@ const Hero = () => {
               <img
                 src={businessTypes[titleIndex].img}
                 alt={businessTypes[titleIndex].title}
-                className="w-full h-full object-cover mix-blend-soft-light"
+                className="md:w-full md:h-full object-cover mix-blend-soft-light w-[100%] h-[60%]"
               />
               <motion.div
                 initial={{ opacity: 0 }}

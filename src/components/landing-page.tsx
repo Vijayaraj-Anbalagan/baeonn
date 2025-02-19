@@ -430,9 +430,11 @@ function App() {
           </a>
         </div>
       </div>
-      <div>
+      <div className="flex flex-row">
+        <a href='https://thesocialsync.in'>
         <p className="text-gray-400 text-sm">Made with ❤ by</p>
         <SparklesText text="SocialSync" className="text-4xl mt-2" />
+        </a>
       </div>
     </div>
 
