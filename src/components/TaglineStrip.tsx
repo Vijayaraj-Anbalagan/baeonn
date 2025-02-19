@@ -46,7 +46,7 @@ const BusinessTypesStrip = () => {
           className="text-center mb-8"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-2">We Serve Everyone</h2>
-          <p className="text-sm text-gray-600 max-w-xl mx-auto">
+          <p className="text-md text-gray-600 max-w-xl mx-auto">
             Empowering a diverse range of stakeholders across the digital economy
           </p>
         </motion.div>
